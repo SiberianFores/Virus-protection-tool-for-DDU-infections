@@ -51,6 +51,17 @@ crypto-miner" family first seen on 2026-11-24, and repairs the system settings i
 > 无商业代码签名：SmartScreen 提示时点「更多信息 → 仍要运行」。
 > 部分杀软可能对 PyInstaller 单文件程序启发式误报——源码完整公开，可自行复现构建。
 
+### 双击没反应？ / Nothing happens on double-click?
+
+单文件程序启动时需要解包到 `%TEMP%`。如果程序所在的文件夹带有**低完整性（Low integrity）**
+或沙箱标签（少数安全环境、容器目录、部分同步盘会有），Windows 会禁止解包，表现为闪一下就退出。
+请改为双击 **`Run-SFguard.bat`**：它会把程序复制到 `%LOCALAPPDATA%\SFguard` 再启动，可绕开该限制。
+
+*The single-file build unpacks itself to `%TEMP%` at startup. If the folder carries a
+Low-integrity / sandbox label, unpacking is blocked and the app exits immediately.
+Double-click **`Run-SFguard.bat`** instead — it copies the exe to `%LOCALAPPDATA%\SFguard`
+and starts it from there.*
+
 ### 命令行 / CLI
 
 ```powershell
@@ -64,6 +75,7 @@ crypto-miner" family first seen on 2026-11-24, and repairs the system settings i
 
 ```
 ├─ SFguard.exe                    主程序 / main executable
+├─ Run-SFguard.bat                启动器（双击 exe 无反应时用）
 ├─ README.md                      本文件 / this file
 ├─ 使用说明.md                    完整使用手册 / full manual
 ├─ 中毒自查与上报指南.md           中毒后的排查与上报流程
@@ -74,7 +86,7 @@ crypto-miner" family first seen on 2026-11-24, and repairs the system settings i
 ├─ 界面截图.png
 ├─ 校验和.txt                     全部文件 SHA-256
 ├─ 生成校验信息.ps1               行数 / 源码树指纹 / exe 哈希重算
-├─ .gitignore
+├─ .gitignore / .gitattributes
 └─ 源码/                          完整源码 + build.ps1
 ```
 

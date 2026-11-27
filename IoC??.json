@@ -1,0 +1,67 @@
+{
+  "campaign": "假 DDU（Display Driver Uninstaller）DLL 劫持投毒 → 隐藏 GPU 挖矿木马",
+  "first_seen": "2026-11-24T18:45:00+08:00",
+  "host": "5060TI\\78102 (Windows 11 23H2 / 22631)",
+  "defender_names": [
+    "TrojanDropper:Win64/Yogi.MK!MTB",
+    "Trojan:Win64/DllHijack.AA!MTB",
+    "Trojan:Script/CoinMiner!rfn"
+  ],
+  "domains": [
+    "fast-dl.dx04-1997.workers.dev"
+  ],
+  "urls": [
+    "https://fast-dl.dx04-1997.workers.dev/ddu-18.1.6.0.zip"
+  ],
+  "ips": ["172.67.159.241", "104.21.50.98", "69.63.176.15"],
+  "ports": [61160, 42842],
+  "hashes": [
+    {"sha256": "A4A4205051C05607D59024D4E4E22DE284F89E7E0D7D46DB442A903BBF24B3E9", "name": "ddu-18.1.6.0.zip", "note": "2026-11-25 在线版本（换哈希重打包）", "malicious": true},
+    {"sha256": "C8FFE43132B659D9FF659CCBF39819B2E8992417F496DDCCB4BA5D2F52B75305", "name": "ddu-18.1.6.0.zip", "note": "2026-11-24 感染版本", "malicious": true},
+    {"sha256": "52D0C6D4EA0DE89C55BDEE6A415A323EF05E424D961B375D0B5676ECE0F399D0", "name": "SqlSetupBootstrapper.dll", "note": "18,437 B 真正的入口 DLL（6/70）", "malicious": true},
+    {"sha256": "C387ABBD97577FC87DF8D2DD3D58EB37019C9E98F004AB9BE94E65DAC4C82D1C", "name": "RuntimeBroker6A2D.exe", "note": "SRBMiner 改造版 28,534,784 B（48/71）", "malicious": true},
+    {"sha256": "4BF8CAF155F1ACF3A9099FDF090385FD60BF9A22CD3505E225D7782A4658D212", "name": "RuntimeBroker6A2D.exe", "note": "PeakMiner 改造版 56,613,376 B", "malicious": true},
+    {"sha256": "45D54E54E0BFCAE4F983A8C5DB88D1E3FED1618B26D4461C76AF8027C4EC4616", "name": "RuntimeBroker6A2D.exe", "note": "lolMiner 改造版 12,482,256 B（44/70）", "malicious": true},
+    {"sha256": "FD0C1B6636F6FB1D16A3A802B4456E40A199EFB34AD18CCD83A8890680A85370", "name": "NtSvcF753.exe", "note": "ProgramData 副本（本地 stratum 代理）", "malicious": true},
+    {"sha256": "47DDB98EECC4BCACCC14EC1A992BBD2DD8932250B55E330E1399A22540A02757", "name": "NtSvcF753.exe", "note": "Roaming 副本", "malicious": true},
+    {"sha256": "737B66F34E33A991A6F983B5164D800F358376A10A43CD88175259A83B986556", "name": "ccv.exe", "note": "ProgramData\\30E7A103", "malicious": true},
+    {"sha256": "0FBCAA65ADA37326741259D2EBC96D52E61D38CD6C28823194F2FFB4BF906EBE", "name": "mzcv.exe", "note": "ProgramData\\30E7A103", "malicious": true},
+    {"sha256": "11BD2C9F9E2397C9A16E0990E4ED2CF0679498FE0FD418A3DFDAC60B5C160EE5", "name": "WinRing0x64.sys", "note": "内核漏洞驱动（5/70）", "malicious": true},
+    {"sha256": "F0B332ED4FF4F4DDE04CF7463B6ABA23D8CD3198BD763A627C5C196C2D775760", "name": "ddu-18.1.6.0.exe", "note": "包内安装器本体，本身干净（0/70），用于 DLL 劫持", "malicious": false}
+  ],
+  "process_names": ["NtSvcF753.exe", "RuntimeBroker6A2D.exe", "ccv.exe", "mzcv.exe", "SecurityHealthHost.exe"],
+  "paths": [
+    "%APPDATA%\\Microsoft\\Windows\\Caches\\1C212048",
+    "%APPDATA%\\Microsoft\\Windows\\Caches\\1C212048\\NtSvcF753.exe",
+    "%APPDATA%\\Microsoft\\Windows\\Caches\\1C212048\\wsc.cmd",
+    "%APPDATA%\\Microsoft\\Windows\\Caches\\1C212048\\wsc.ps1",
+    "%LOCALAPPDATA%\\Microsoft\\Windows\\Caches\\1C212048",
+    "%LOCALAPPDATA%\\Microsoft\\Windows\\Caches\\1C212048\\Content.IE5\\CBADF215\\RuntimeBroker6A2D.exe",
+    "%LOCALAPPDATA%\\Microsoft\\Windows\\Caches\\1A44A355",
+    "%LOCALAPPDATA%\\Microsoft\\Windows\\Caches\\1A44A355\\.b",
+    "C:\\ProgramData\\Microsoft\\Windows\\Caches\\1C212048",
+    "C:\\ProgramData\\Microsoft\\Windows\\Caches\\1C212048\\NtSvcF753.exe",
+    "C:\\ProgramData\\30E7A103",
+    "C:\\ProgramData\\30E7A103\\ccv.exe",
+    "C:\\ProgramData\\30E7A103\\mzcv.exe"
+  ],
+  "registry": {
+    "run_values": ["SECIDNWFZ", "WindowsCacheManager"],
+    "run_keys": [
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+      "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+      "HKLM\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run"
+    ],
+    "defender_policy": [
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Paths",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Processes",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection"
+    ],
+    "uac": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System (ConsentPromptBehaviorAdmin=0, PromptOnSecureDesktop=0)"
+  },
+  "scheduled_tasks": ["\\Windows Update Health Handler"],
+  "startup_shortcut": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\NtSvcF753.lnk",
+  "artifact_files": [".o", ".p", ".src", "wsc.cmd", "wsc.ps1"],
+  "command_line_markers": ["--algorithm pearlhash", "--pool 127.0.0.1:61160", "--wallet 0x", "--disable-cpu", "--api-port 42842"]
+}
